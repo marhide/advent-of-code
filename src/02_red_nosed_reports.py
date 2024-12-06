@@ -1,5 +1,5 @@
 with open('data/02_input.txt', 'r', encoding='utf-8') as f:
-    nums_lists = [list(map(int, l.strip().split(' '))) for l in f]
+    data = [list(map(int, l.strip().split(' '))) for l in f]
 
 
 def is_report_safe(nums_list):
@@ -29,6 +29,6 @@ def problem_dampener(num_list):
     return False
 
 
-part_1 = len(tuple(filter(is_report_safe, nums_lists)))
-part_2 = len(tuple(filter(problem_dampener, nums_lists)))
+part_1 = len(tuple(filter(is_report_safe, data)))
+part_2 = len(tuple(filter(problem_dampener, data)))
 print(f'part 1: {part_1}\npart 2: {part_2}')
