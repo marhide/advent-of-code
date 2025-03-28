@@ -57,3 +57,13 @@ def get_xmas_count(data):
     return xmas_count
 
 print(f'part 1: {get_xmas_count(data)}\npart 2: ')
+
+def cross_mas_count(data):
+    count = 0
+    x_range = range(1, len(data)-1)
+    print(str(x_range))
+    # for x in range(1, len(data)-1):
+    #     count += 1
+    #     print(f"{count}/{len(data)}")
+
+cross_mas_count(data)
