@@ -3,7 +3,6 @@ with open('data/04_input.txt', 'r', encoding='utf-8') as f:
 
 
 def get_xmas_count(data):
-
     xmas_count = 0
 
     for x in range(len(data)):
@@ -60,9 +59,8 @@ def get_xmas_count(data):
 
 def get_cross_mas_count(data):
     cross_mas_count = 0
-    x_range = range(1, len(data)-1)
 
-    for x in x_range:
+    for x in range(1, len(data)-1):
         y_range = range(1, len(data[x])-1)
 
         for y in y_range:
@@ -75,7 +73,7 @@ def get_cross_mas_count(data):
 
                 cross_str = top_l + top_r + btm_l + btm_r
 
-                if cross_str in ['SSMM', 'MMSS', 'SMSM', 'MSMS']:
+                if cross_str in ('SSMM', 'MMSS', 'SMSM', 'MSMS'):
                     cross_mas_count += 1
 
     return cross_mas_count
