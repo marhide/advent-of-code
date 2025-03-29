@@ -1,6 +1,7 @@
 with open('data/04_input.txt', 'r', encoding='utf-8') as f:
     data = [l.strip() for l in f]
 
+
 def get_xmas_count(data):
 
     xmas_count = 0
@@ -8,7 +9,7 @@ def get_xmas_count(data):
     for x in range(len(data)):
 
         bottom_to_top_range = range(3, len(data))
-        top_to_bottom_range = range(len(data)-3)
+        top_to_btm_range = range(len(data)-3)
         left_to_right_range = range(len(data[x])-3)
         right_to_left_range = range(3, len(data[x]))
 
@@ -30,17 +31,17 @@ def get_xmas_count(data):
                     xmas_count += 1
             
             #top to bottom, left to right diagonal
-            if x in top_to_bottom_range and y in left_to_right_range:
+            if x in top_to_btm_range and y in left_to_right_range:
                 if data[x][y]+data[x+1][y+1]+data[x+2][y+2]+data[x+3][y+3] == 'XMAS':
                     xmas_count += 1
 
             #top to bottom vertical
-            if x in top_to_bottom_range:
+            if x in top_to_btm_range:
                 if data[x][y]+data[x+1][y]+data[x+2][y]+data[x+3][y] == 'XMAS':
                     xmas_count += 1
 
             #top to bottom, right to left diagonal
-            if x in top_to_bottom_range and y in right_to_left_range:
+            if x in top_to_btm_range and y in right_to_left_range:
                 if data[x][y]+data[x+1][y-1]+data[x+2][y-2]+data[x+3][y-3] == 'XMAS':
                     xmas_count += 1
 
@@ -57,18 +58,27 @@ def get_xmas_count(data):
     return xmas_count
 
 
-
-
-def cross_mas_count(data):
-    count = 0
+def get_cross_mas_count(data):
+    cross_mas_count = 0
     x_range = range(1, len(data)-1)
 
     for x in x_range:
-        y_range = range(len(data[x][1:-1]))
+        y_range = range(1, len(data[x])-1)
+
         for y in y_range:
             if data[x][y] == 'A':
-                print(f'A found at {str(x)},{str(y)}')
 
-    return count
+                top_l = data[x-1][y-1]
+                top_r = data[x-1][y+1]
+                btm_l = data[x+1][y-1]
+                btm_r = data[x+1][y+1]
 
-print(f'part 1: {get_xmas_count(data)}\npart 2: {cross_mas_count(data)}')
+                cross_str = top_l + top_r + btm_l + btm_r
+
+                if cross_str in ['SSMM', 'MMSS', 'SMSM', 'MSMS']:
+                    cross_mas_count += 1
+
+    return cross_mas_count
+
+
+print(f'part 1: {get_xmas_count(data)}\npart 2: {get_cross_mas_count(data)}')
