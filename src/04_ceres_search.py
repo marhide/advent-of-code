@@ -56,14 +56,19 @@ def get_xmas_count(data):
 
     return xmas_count
 
-print(f'part 1: {get_xmas_count(data)}\npart 2: ')
+
+
 
 def cross_mas_count(data):
     count = 0
     x_range = range(1, len(data)-1)
-    print(str(x_range))
-    # for x in range(1, len(data)-1):
-    #     count += 1
-    #     print(f"{count}/{len(data)}")
 
-cross_mas_count(data)
+    for x in x_range:
+        y_range = range(len(data[x][1:-1]))
+        for y in y_range:
+            if data[x][y] == 'A':
+                print(f'A found at {str(x)},{str(y)}')
+
+    return count
+
+print(f'part 1: {get_xmas_count(data)}\npart 2: {cross_mas_count(data)}')
