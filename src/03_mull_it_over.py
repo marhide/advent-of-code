@@ -10,18 +10,18 @@ def get_multiple(item):
 
         item_1 = split_item[0]
         item_2 = split_item[1]
-        n1, n2 = '', ''
+        num_1, num_2 = '', ''
 
         if len(item_1) in range(1,4) and item_1.isnumeric():
             for i in range(len(item_1)):
                 if i in range(0,3) and item_1[i].isnumeric():
-                    n1 += item_1[i]
+                    num_1 += item_1[i]
 
             for i in range(len(item_2)):
                 if i in range(0,3) and item_2[i].isnumeric():
-                    n2 += item_2[i]
+                    num_2 += item_2[i]
                 elif i in range(1,4) and item_2[i] == ')':
-                    output_multiple = int(n1)*int(n2)
+                    output_multiple = int(num_1)*int(num_2)
                     return output_multiple
 
     return 0
