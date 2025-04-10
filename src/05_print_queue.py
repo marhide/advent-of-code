@@ -12,18 +12,17 @@ with open('data/05_input.txt', 'r', encoding='utf-8') as f:
 
 
 def update_checker(update):
+    
     pages_checked = []
-    is_update_correct = True
+
     for page in update:
         if page in order_dict:
             pages_checked.append(page)
             for incorrect_page in order_dict[page]:
                 if incorrect_page in pages_checked:
-                    is_update_correct = False
-                    break
-        if not is_update_correct:
-            break
-    return is_update_correct
+                    return False
+                
+    return True
 
 
 def update_corrector(update, counter=0):
