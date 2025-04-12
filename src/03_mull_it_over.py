@@ -21,7 +21,7 @@ def get_multiple(item):
                 if i in range(0,3) and item_2[i].isnumeric():
                     num_2 += item_2[i]
                 elif i in range(1,4) and item_2[i] == ')':
-                    output_multiple = int(num_1)*int(num_2)
+                    output_multiple = int(num_1) * int(num_2)
                     return output_multiple
 
     return 0

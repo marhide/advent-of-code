@@ -25,12 +25,11 @@ def update_checker(update):
     return True
 
 
-def update_corrector(update, counter=0):
+def update_corrector(update, fn_has_ran_before=False):
 
-    if update_checker(update) and counter:
+    if update_checker(update) and fn_has_ran_before:
         return update
 
-    counter += 1
     pages_checked = []
 
     for page in update:
@@ -40,7 +39,7 @@ def update_corrector(update, counter=0):
                 if incorrect_page in pages_checked:
                     update.remove(incorrect_page)
                     update.append(incorrect_page)
-                    return update_corrector(update, counter)
+                    return update_corrector(update, True)
 
 
 correct_updates = filter(update_checker, updates_list)
