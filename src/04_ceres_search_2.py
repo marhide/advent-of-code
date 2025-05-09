@@ -1,27 +1,6 @@
 with open('data/04_test_input_2.txt', 'r', encoding='utf-8') as f:
     data = [l.strip() for l in f]
 
-
-# def check_if_coord_is_xmas(x, y, xmas_count):
-
-#     for i in range(3):
-#         xmas_str = ''
-
-#         increase_x = i in [0,1]
-#         inc_y = i in [0, 2]
-
-
-#         for j in range(4):
-#             try:
-#                 xmas_str += data[x+j if increase_x else x][y+j if inc_y else y]
-#             except IndexError:
-#                 break
-
-#         if xmas_str in ['XMAS', 'SAMX']:
-#             xmas_count += 1
-
-#     return xmas_count
-
 '''
 0 -y         up
 1 -y and +x  up right
