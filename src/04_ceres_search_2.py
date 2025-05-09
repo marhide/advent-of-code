@@ -1,22 +1,8 @@
-with open('data/04_test_input_2.txt', 'r', encoding='utf-8') as f:
-    data = [l.strip() for l in f]
-
-'''
-0 -y         up
-1 -y and +x  up right
-2 +x         right
-3 +y and +x  down right
-4 +x         down
-5 +y and -x  down left
-6 -x         left
-7 -y and -x  up left
-'''
-
-def get_xmas_count(data):
+def get_xmas_count(table):
     count = 0
 
-    for y in range(len(data)):
-        for x in range(len(data[y])):
+    for col_index in range(len(table)):
+        for row_index in range(len(table[col_index])):
             for i in range(8):
                 up = i in (0, 1, 7)
                 down = i in (3, 4, 5)
@@ -26,19 +12,24 @@ def get_xmas_count(data):
                 xmas_str = ''
 
                 for j in range(4):
-                    new_y = y+j if down else y-j if up else y
-                    new_x = x+j if right else x-j if left else x
+                    new_col_index = col_index+j if down else col_index-j if up else col_index
+                    new_row_index = row_index+j if right else row_index-j if left else row_index
 
                     try:
-                        xmas_str += data[new_y][new_x]
+                        xmas_str += table[new_col_index][new_row_index]
                     except IndexError:
                         break
 
                     if xmas_str == 'XMAS':
                         count += 1
-                        print(f"{xmas_str}, x: {x+1} y: {y+1},{' up' if up else ''}{' down' if down else ''}{' right' if right else ''}{' left' if left else ''}")
+                        print(f"{xmas_str}, row_index: {row_index+1} col_index: {col_index+1},{' up' if up else ''}{' down' if down else ''}{' right' if right else ''}{' left' if left else ''}")
 
     return count
 
 
-print(get_xmas_count(data))
+if __name__ == '__main__':
+
+    with open('data/04_input.txt', 'r', encoding='utf-8') as f:
+        table = [l.strip() for l in f]
+
+    print(get_xmas_count(table))
