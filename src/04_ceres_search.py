@@ -1,75 +1,46 @@
-with open('data/04_input.txt', 'r', encoding='utf-8') as f:
-    data = [l.strip() for l in f]
+def get_xmas_count(table):
+    count = 0
+    col_range = range(len(table))
+
+    for col in col_range:
+        row_range = range(len(table[col]))
+
+        for row in row_range:
+
+            for i in range(8):
+                up = i in (0, 1, 7)
+                down = i in (3, 4, 5)
+                left = i in (5, 6, 7)
+                right = i in (1, 2, 3)
+
+                xmas_str = ''
+
+                for j in range(4):
+                    new_col = col-j if up else col+j if down else col
+                    new_row = row-j if left else row+j if right else row
+                    
+                    if new_col in col_range and new_row in row_range:
+                        xmas_str += table[new_col][new_row]
+
+                if xmas_str == 'XMAS':
+                    count += 1
+
+    return count
 
 
-def get_xmas_count(data):
-    xmas_count = 0
-
-    for x in range(len(data)):
-
-        bottom_to_top_range = range(3, len(data))
-        top_to_btm_range = range(len(data)-3)
-        left_to_right_range = range(len(data[x])-3)
-        right_to_left_range = range(3, len(data[x]))
-
-        for y in range(len(data[x])):
-
-            #bottom to top vertical
-            if x in bottom_to_top_range:
-                if data[x][y]+data[x-1][y]+data[x-2][y]+data[x-3][y] == 'XMAS':
-                    xmas_count += 1
-
-            #bottom to top, left to right diagonal
-            if x in bottom_to_top_range and y in left_to_right_range:
-                if data[x][y]+data[x-1][y+1]+data[x-2][y+2]+data[x-3][y+3] == 'XMAS':
-                    xmas_count += 1
-
-            #left to right horizontal
-            if y in left_to_right_range:
-                if data[x][y]+data[x][y+1]+data[x][y+2]+data[x][y+3] == 'XMAS':
-                    xmas_count += 1
-            
-            #top to bottom, left to right diagonal
-            if x in top_to_btm_range and y in left_to_right_range:
-                if data[x][y]+data[x+1][y+1]+data[x+2][y+2]+data[x+3][y+3] == 'XMAS':
-                    xmas_count += 1
-
-            #top to bottom vertical
-            if x in top_to_btm_range:
-                if data[x][y]+data[x+1][y]+data[x+2][y]+data[x+3][y] == 'XMAS':
-                    xmas_count += 1
-
-            #top to bottom, right to left diagonal
-            if x in top_to_btm_range and y in right_to_left_range:
-                if data[x][y]+data[x+1][y-1]+data[x+2][y-2]+data[x+3][y-3] == 'XMAS':
-                    xmas_count += 1
-
-            #right to left horizontal
-            if y in right_to_left_range:
-                if data[x][y]+data[x][y-1]+data[x][y-2]+data[x][y-3] == 'XMAS':
-                    xmas_count += 1
-
-            #bottom to top, right to left diagonal
-            if x in bottom_to_top_range and y in right_to_left_range:
-                if data[x][y]+data[x-1][y-1]+data[x-2][y-2]+data[x-3][y-3] == 'XMAS':
-                    xmas_count += 1
-
-    return xmas_count
-
-
-def get_cross_mas_count(data):
+def get_cross_mas_count(table):
     cross_mas_count = 0
 
-    for x in range(1, len(data)-1):
-        y_range = range(1, len(data[x])-1)
+    for y in range(1, len(table)-1):
+        x_range = range(1, len(table[y])-1)
 
-        for y in y_range:
-            if data[x][y] == 'A':
+        for x in x_range:
+            if table[y][x] == 'A':
 
-                top_l = data[x-1][y-1]
-                top_r = data[x-1][y+1]
-                btm_l = data[x+1][y-1]
-                btm_r = data[x+1][y+1]
+                top_l = table[y-1][x-1]
+                top_r = table[y-1][x+1]
+                btm_l = table[y+1][x-1]
+                btm_r = table[y+1][x+1]
 
                 cross_str = top_l + top_r + btm_l + btm_r
 
@@ -79,4 +50,8 @@ def get_cross_mas_count(data):
     return cross_mas_count
 
 
-print(f'part 1: {get_xmas_count(data)}\npart 2: {get_cross_mas_count(data)}')
+if __name__ == '__main__':
+    with open('data/04_input.txt', 'r', encoding='utf-8') as file:
+        table = [line.strip() for line in file]
+
+    print(f'part 1: {get_xmas_count(table)}\npart 2: {get_cross_mas_count(table)}')
