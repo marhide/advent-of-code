@@ -29,25 +29,25 @@ def get_xmas_count(table):
 
 
 def get_cross_mas_count(table):
-    cross_mas_count = 0
+    count = 0
 
-    for y in range(1, len(table)-1):
-        x_range = range(1, len(table[y])-1)
+    for col in range(1, len(table)-1):
+        row_range = range(1, len(table[col])-1)
 
-        for x in x_range:
-            if table[y][x] == 'A':
+        for row in row_range:
+            if table[col][row] == 'A':
 
-                top_l = table[y-1][x-1]
-                top_r = table[y-1][x+1]
-                btm_l = table[y+1][x-1]
-                btm_r = table[y+1][x+1]
+                top_l = table[col-1][row-1]
+                top_r = table[col-1][row+1]
+                btm_l = table[col+1][row-1]
+                btm_r = table[col+1][row+1]
 
                 cross_str = top_l + top_r + btm_l + btm_r
 
                 if cross_str in ('SSMM', 'MMSS', 'SMSM', 'MSMS'):
-                    cross_mas_count += 1
+                    count += 1
 
-    return cross_mas_count
+    return count
 
 
 if __name__ == '__main__':
