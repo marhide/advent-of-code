@@ -17,31 +17,33 @@ def get_unique_position_count(table):
     table = add_border_to_table(table)
     col_index, row_index = get_starting_positions(table)
     coords_visited = []
-    i = 0
+    direction_index = 0
 
     while table[col_index][row_index] != 'E':
-        if i == 0:
-            col_index -= 1
-        if i == 1:
-            row_index += 1
-        if i == 2:
-            col_index += 1
-        if i == 3:
-            row_index -= 1
+        match direction_index:
+            case 0:
+                col_index -= 1
+            case 1:
+                row_index += 1
+            case 2:
+                col_index += 1
+            case 3:
+                row_index -= 1
 
         if table[col_index][row_index] == '#':
-            if i == 0:
-                col_index += 1
-            if i == 1:
-                row_index -= 1
-            if i == 2:
-                col_index -= 1
-            if i == 3:
-                row_index += 1
+            match direction_index:
+                case 0: 
+                    col_index += 1
+                case 1:
+                    row_index -= 1
+                case 2:
+                    col_index -= 1
+                case 3:
+                    row_index += 1
 
-            i += 1
-            if i > 3:
-                i = 0
+            direction_index += 1
+            if direction_index > 3:
+                direction_index = 0
 
         coords_visited.append((col_index, row_index))
 
