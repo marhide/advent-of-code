@@ -63,7 +63,6 @@ def get_unique_position_count(table):
     return unique_position_count
 
 
-
 def get_table_permuations(table):
     table_permutations = []
     for col_index in range(len(table)):
@@ -83,4 +82,4 @@ if __name__ == '__main__':
     table_permuations = get_table_permuations(table)
     looping_tables_count = len(list(filter(lambda table: not get_unique_position_count(table), table_permuations)))
 
-print(f'part 1: {get_unique_position_count(table)}\npart 2: {looping_tables_count}')
+    print(f'part 1: {get_unique_position_count(table)}\npart 2: {looping_tables_count}')
