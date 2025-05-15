@@ -36,7 +36,7 @@ def check_if_equation_possible(item):
 if __name__ == '__main__':
     with open('data/07_input.txt', 'r', encoding='utf-8') as file:
         data = [line.strip().split(': ') for line in file]
-        data = [[int(item[0]), list(map(int, item[1].split(' ')))] for item in data]
+        data = [[int(item[0]), tuple(map(int, item[1].split(' ')))] for item in data]
 
     part_1 = sum(map(lambda item: item[0], filter(check_if_equation_possible, data)))
     print(f'part 1: {part_1}\npart 2: {""}')
