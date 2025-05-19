@@ -13,12 +13,14 @@ def is_equation_possible(item):
         for i in range(number_of_operators):
             operator = operator_sequence[i]
             number = number_list[i+1]
-            if operator == '+':
-                total += number
-            elif operator == '*':
-                total *= number
-            elif operator == '|':
-                total = int(f'{total}{number}')
+            
+            match operator:
+                case '+':
+                    total += number
+                case '*':
+                    total *= number
+                case '|':
+                    total = int(f'{total}{number}')
 
         if total == result:
             return True
