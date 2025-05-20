@@ -4,13 +4,13 @@ from itertools import product
 def is_equation_possible(item):
     result = item[0]
     number_list = item[1]
-    number_of_operators = len(number_list)-1
+    operator_sequence_length = len(number_list)-1
 
-    operator_sequence_permutations = product('+*|', repeat=number_of_operators)
+    operator_sequence_permutations = product('+*|', repeat=operator_sequence_length)
 
     for operator_sequence in operator_sequence_permutations:
         total = number_list[0]
-        for i in range(number_of_operators):
+        for i in range(operator_sequence_length):
             operator = operator_sequence[i]
             number = number_list[i+1]
             
