@@ -12,14 +12,17 @@ def get_coords_dict(data):
     return coords_dict
 
 def get_antinode_count(coords_dict, x_range, y_range):
+    
     count = 0
-    y_range = range(1, 51)
-    x_range = range(1, 51)
+    antinode_list = []
+
     for k in coords_dict:
         print(f'\n\n{k}: {coords_dict[k]}\n')
+        new_map = [['.' for _ in x_range] for _ in y_range]
         for i in range(len(coords_dict[k])):
             x = coords_dict[k][i][0]
             y = coords_dict[k][i][1]
+            new_map[y][x] = k
             for j in range(len(coords_dict[k])):
                 if i != j:
                     comparison_x = coords_dict[k][j][0]
@@ -29,8 +32,15 @@ def get_antinode_count(coords_dict, x_range, y_range):
 
                     print(f'i: {i}, j: {j} - {x_antinode in x_range and y_antinode in y_range}\nx: {x}, comp x: {comparison_x}, x antinode: {x_antinode}, x antinode in range: {x_antinode in x_range}\ny: {y}, comp y: {comparison_y}, y antinode: {y_antinode}, y antinode in range: {y_antinode in y_range}\n')
                     if x_antinode in x_range and y_antinode in y_range:
-                        count += 1
-
+                        antinode_coord = (x_antinode, y_antinode)
+                        if antinode_coord not in antinode_list:
+                            count += 1
+                            antinode_list.append(antinode_coord)
+                        
+                        new_map[y_antinode][x_antinode] = '#'
+    
+        new_map = [''.join(item) for item in new_map]
+        for item in new_map: print(item)
     return count
 
 if __name__ == '__main__':
