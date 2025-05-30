@@ -1,9 +1,8 @@
 def get_antinode_count(data):
     unique_chars = sorted(tuple(set(char for char in ''.join(data) if char != '.')))
+    coords_dict = {char: [] for char in unique_chars}
     y_range = range(len(data))
     x_range = range(len(data[0]))
-
-    coords_dict = {char: [] for char in unique_chars}
  
     for y in y_range:
         for x in x_range:
