@@ -1,13 +1,13 @@
 def get_antinode_count(data):
     unique_chars = sorted(tuple(set(char for char in ''.join(data) if char != '.')))
     coords_dict = {char: [] for char in unique_chars}
-    y_range = range(len(data))
-    x_range = range(len(data[0]))
+    y_range = range(1, len(data)+1)
+    x_range = range(1, len(data[0])+1)
  
     for y in y_range:
         for x in x_range:
-            if data[y][x] != '.':
-                coords_dict[data[y][x]].append((x, y))
+            if data[y-1][x-1] != '.':
+                coords_dict[data[y-1][x-1]].append((x, y))
 
     count = 0
     antinode_list = []
