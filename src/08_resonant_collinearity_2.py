@@ -14,45 +14,30 @@ def get_antinode_count(data):
 
     for k in coords_dict:
         print(f'\n\n{k}: {coords_dict[k]}\n')
-        for i in range(1, len(coords_dict[k])+1):
-            x, y = coords_dict[k][i-1]
+        for i in range(len(coords_dict[k])):
+            x, y = coords_dict[k][i]
             for j in range(len(coords_dict[k])):
                 if i != j:
                     comparison_x, comparison_y = coords_dict[k][j]
                     x_antinode = x - (comparison_x - x)
                     y_antinode = y - (comparison_y - y)
 
+                    # print(f'\ni: {i}, j: {j} -- {x_antinode in x_range and y_antinode in y_range}\nx: {x}, comp x: {comparison_x}, x antinode: {x_antinode}, x antinode in range: {x_antinode in x_range}\ny: {y}, comp y: {comparison_y}, y antinode: {y_antinode}, y antinode in range: {y_antinode in y_range}\n')
+
                     multiplier_counter = 0
-                    new_x_antinode = x_antinode
-                    new_y_antinode = y_antinode
-                    new_neg_x_antinode = x_antinode
-                    new_neg_y_antinode = y_antinode
-                    
-                    while new_x_antinode in x_range and new_y_antinode in y_range:
+                    while x_antinode in x_range and y_antinode in y_range:
                         multiplier_counter += 1
 
-                        new_x_antinode = multiplier_counter*x_antinode
-                        new_y_antinode = multiplier_counter*y_antinode
-                        antinode_coord = (new_x_antinode, new_y_antinode)
+                        antinode_coord = (x_antinode, y_antinode)
 
                         print(antinode_coord)
                         if antinode_coord not in antinode_list:
                             antinode_list.append(antinode_coord)
                             count += 1
+
+                        x_antinode = x - (comparison_x - x*multiplier_counter)
+                        y_antinode = y - (comparison_y - y*multiplier_counter)
                         
-                    multiplier_counter = 0
-
-                    while new_neg_x_antinode in x_range and new_neg_y_antinode in y_range:
-                        multiplier_counter += 1
-
-                        new_neg_x_antinode = int(x_antinode/multiplier_counter)
-                        new_neg_y_antinode = int(y_antinode/multiplier_counter)
-                        antinode_coord = (new_neg_x_antinode, new_neg_y_antinode)
-
-                        print(antinode_coord)
-                        if antinode_coord not in antinode_list:
-                            antinode_list.append(antinode_coord)
-                            count += 1
 
     return count
 
