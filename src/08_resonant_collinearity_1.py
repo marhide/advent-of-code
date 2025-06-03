@@ -9,7 +9,6 @@ def get_antinode_count(data):
             if data[y-1][x-1] != '.':
                 coords_dict[data[y-1][x-1]].append((x, y))
 
-    count = 0
     antinode_list = []
 
     for k in coords_dict:
@@ -28,14 +27,13 @@ def get_antinode_count(data):
                     
                     if x_antinode in x_range and y_antinode in y_range:
                         antinode_coord = (x_antinode, y_antinode)
-                        if antinode_coord not in antinode_list:
-                            count += 1
-                            antinode_list.append(antinode_coord)
+                        antinode_list.append(antinode_coord)
                         
                         # new_map[y_antinode][x_antinode] = '#'
     
         # new_map = [''.join(item) for item in new_map]
         # for item in new_map: print(item)
+    count = len(set(antinode_list))
     return count
 
 if __name__ == '__main__':
