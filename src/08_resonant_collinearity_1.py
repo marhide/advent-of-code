@@ -26,8 +26,7 @@ def get_antinode_count(data):
                     # print(f'i: {i}, j: {j} -- {x_antinode in x_range and y_antinode in y_range}\nx: {x}, comp x: {comparison_x}, x antinode: {x_antinode}, x antinode in range: {x_antinode in x_range}\ny: {y}, comp y: {comparison_y}, y antinode: {y_antinode}, y antinode in range: {y_antinode in y_range}\n')
                     
                     if x_antinode in x_range and y_antinode in y_range:
-                        antinode_coord = (x_antinode, y_antinode)
-                        antinode_list.append(antinode_coord)
+                        antinode_list.append((x_antinode, y_antinode))
                         
                         # new_map[y_antinode][x_antinode] = '#'
     
