@@ -10,24 +10,29 @@ def get_antinode_count(data):
             if data[y][x] != '.':
                 coords_dict[data[y][x]].append((x, y))
 
-    antinode_set = set()
+    antinode_coord_set = set()
 
+    print_maps = []
     for k in coords_dict:
-        for i, j in permutations(range(len(coords_dict[k])), 2):
+        print_map = [['.' for _ in coord_range] for _ in coord_range]
+        for node, comparison_node in permutations(coords_dict[k], 2):
             distance_multiplier = 1
-            x, y = coords_dict[k][i]
-            comparison_x, comparison_y = coords_dict[k][j]
-
+            x, y = node
+            print_map[y][x] = k
+            comparison_x, comparison_y = comparison_node
             while True:
-                x_antinode = x - ((comparison_x - x)*distance_multiplier)
-                y_antinode = y - ((comparison_y - y)*distance_multiplier)
+                x_antinode = x-(distance_multiplier*(comparison_x-x))
+                y_antinode = y-(distance_multiplier*(comparison_y-y))
                 if x_antinode in coord_range and y_antinode in coord_range:
-                    antinode_set.add((x_antinode, y_antinode))
+                    antinode_coord_set.add((x_antinode, y_antinode))
+                    print_map[y_antinode][x_antinode] = '#'
                     distance_multiplier += 1
                 else:
                     break
+        print_maps.append('\n'.join([''.join(item) for item in print_map]))
 
-    count = len(antinode_set)
+    with open('data/08b_output.txt', 'w') as f: f.write('\n\n'.join(print_maps))
+    count = len(antinode_coord_set)
     return count
 
 
@@ -46,14 +51,14 @@ def get_antinode_count(data):
     #                 x_antinode = x - (comparison_x - x)
     #                 y_antinode = y - (comparison_y - y)
     #                 while x_antinode in coord_range and y_antinode in coord_range:
-    #                     antinode_set.add((x_antinode, y_antinode))
+    #                     antinode_coord_set.add((x_antinode, y_antinode))
     #                     print_map[y_antinode-1][x_antinode-1] = '#'
     #                     distance_multiplier += 1
     #                     x_antinode = x - ((comparison_x - x)*distance_multiplier)
     #                     y_antinode = y - ((comparison_y - y)*distance_multiplier)
     #     print_maps.append('\n'.join([''.join(item) for item in print_map]))
     # with open('data/08b_output.txt', 'w') as f: f.write('\n\n'.join(print_maps))
-    # count = len(antinode_set)
+    # count = len(antinode_coord_set)
     # return count
 
 if __name__ == '__main__':

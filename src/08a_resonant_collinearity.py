@@ -15,15 +15,15 @@ def get_antinode_count(data):
     for k in coords_dict:
         print(f'\n\n{k}: {coords_dict[k]}\n')
         new_map = [['.' for _ in coord_range] for _ in coord_range]
-        for i, j in permutations(range(len(coords_dict[k])), 2):
-            x, y = coords_dict[k][i]
+        for node, compairson_node in permutations(coords_dict[k], 2):
+            x, y = node
             new_map[y][x] = k
 
-            comparison_x, comparison_y = coords_dict[k][j]
+            comparison_x, comparison_y = compairson_node
             x_antinode = x - (comparison_x - x)
             y_antinode = y - (comparison_y - y)
 
-            print(f'i: {i}, j: {j} -- {x_antinode in coord_range and y_antinode in coord_range}\nx: {x}, comp x: {comparison_x}, x antinode: {x_antinode}, x antinode in range: {x_antinode in coord_range}\ny: {y}, comp y: {comparison_y}, y antinode: {y_antinode}, y antinode in range: {y_antinode in coord_range}\n')
+            print(f'{x_antinode in coord_range and y_antinode in coord_range}\nx: {x}, comp x: {comparison_x}, x antinode: {x_antinode}, x antinode in range: {x_antinode in coord_range}\ny: {y}, comp y: {comparison_y}, y antinode: {y_antinode}, y antinode in range: {y_antinode in coord_range}\n')
             
             if x_antinode in coord_range and y_antinode in coord_range:
                 antinode_set.add((x_antinode, y_antinode))
