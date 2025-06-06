@@ -1,16 +1,11 @@
-from itertools import permutations
+from itertools import permutations, product
 
 def get_antinode_count(data):
     unique_chars = sorted(tuple(set(char for char in ''.join(data) if char != '.')))
-    coords_dict = {char: [] for char in unique_chars}
     coord_range = range(len(data))
- 
-    for y in coord_range:
-        for x in coord_range:
-            if data[y][x] != '.':
-                coords_dict[data[y][x]].append((x, y))
+    coords_dict = {char: [(x, y) for y, x in product(coord_range, repeat=2) if data[y][x] == char] for char in unique_chars}
 
-    antinode_coord_set = set()
+    antinode_set = set()
 
     for k in coords_dict:
         for node, comparison_node in permutations(coords_dict[k], 2):
@@ -20,12 +15,14 @@ def get_antinode_count(data):
             while True:
                 x_antinode = x-(distance_multiplier*(comparison_x-x))
                 y_antinode = y-(distance_multiplier*(comparison_y-y))
+                
                 if x_antinode in coord_range and y_antinode in coord_range:
-                    antinode_coord_set.add((x_antinode, y_antinode))
+                    antinode_set.add((x_antinode, y_antinode))
                     distance_multiplier += 1
                 else:
                     break
-    count = len(antinode_coord_set)
+
+    count = len(antinode_set)
     return count
 
 
