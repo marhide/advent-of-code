@@ -9,26 +9,20 @@ def replace_written_number_with_int(calibration_line):
                 'eight': '8',
                 'nine': '9'}
 
-    correct_line = ''
-    letters = ''
+    numbers = ''
 
-    for char in calibration_line:
-
-        if char.isalpha():
-            letters += char
-
-        if letters in number_lookup:
-            correct_line += number_lookup[letters]
-            letters = ''
-
-        elif char.isnumeric():
-            correct_line += char
-            letters = ''
+    for i in range(len(calibration_line)):
+        if calibration_line[i].isnumeric():
+            numbers += calibration_line[i]
+        else:    
+            for j in range(i, len(calibration_line)+1):
+                if calibration_line[i:j] in number_lookup:
+                    numbers += number_lookup[calibration_line[i:j]]
+    
+    print(numbers)
+    
         
-    print(calibration_line, correct_line)
-
-
-    return correct_line
+    return numbers
 
 def return_calibration_value(calibration_line):
     calibration_value_list = list(filter(str.isdigit, calibration_line))
