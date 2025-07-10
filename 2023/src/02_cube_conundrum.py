@@ -1,5 +1,5 @@
 def is_game_possible(game):
-    game_list = game.split(' ')[:2:-1]
+    game_list = game.replace(',', '').replace(';', '').split(' ')[:2:-1]
 
     maximum_number_for_colour = {'red': 12, 'green': 13, 'blue': 14}
     current_colour = ''
@@ -10,7 +10,7 @@ def is_game_possible(game):
             if number > maximum_number_for_colour[current_colour]:
                 return False
         else:
-            current_colour = game_list[i].replace(',', '').replace(';', '')
+            current_colour = game_list[i]
 
     return True
 
