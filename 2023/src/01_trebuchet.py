@@ -1,20 +1,11 @@
 def replace_written_number_with_digit(calibration_line):
-    number_lookup = {'one': '1',
-                'two': '2',
-                'three': '3',
-                'four': '4',
-                'five': '5',
-                'six': '6',
-                'seven': '7',
-                'eight': '8',
-                'nine': '9'}
-
+    number_lookup = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
     numbers = ''
 
     for i in range(len(calibration_line)):
         if calibration_line[i].isnumeric():
             numbers += calibration_line[i]
-        else:    
+        else:
             for j in range(i, len(calibration_line)+1):
                 if calibration_line[i:j] in number_lookup:
                     numbers += number_lookup[calibration_line[i:j]]
