@@ -1,3 +1,5 @@
+from math import prod
+
 def get_power_of_game(game):
     game_list = game.replace(',', '').replace(';', '').split(' ')[:1:-1]
     highest_number_for_colour = {'red': 0, 'green': 0, 'blue': 0}
@@ -10,9 +12,9 @@ def get_power_of_game(game):
         else:
             current_colour = item
 
-    power_of_game = 1
-    for key in highest_number_for_colour:
-        power_of_game *= highest_number_for_colour[key]
+    power_of_game = prod(highest_number_for_colour.values())
+    # for key in highest_number_for_colour:
+    #     power_of_game *= highest_number_for_colour[key]
 
     return power_of_game
 
