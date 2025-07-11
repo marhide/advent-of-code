@@ -6,16 +6,14 @@ def get_power_of_game(game):
 
     current_colour = ''
     for item in game_list:
-        if item.isnumeric():
-            if int(item) > highest_number_for_colour[current_colour]:
-                highest_number_for_colour[current_colour] = int(item)
-        else:
+        try:
+            number = int(item)
+            if number > highest_number_for_colour[current_colour]:
+                highest_number_for_colour[current_colour] = number
+        except:
             current_colour = item
 
     power_of_game = prod(highest_number_for_colour.values())
-    # for key in highest_number_for_colour:
-    #     power_of_game *= highest_number_for_colour[key]
-
     return power_of_game
 
 
