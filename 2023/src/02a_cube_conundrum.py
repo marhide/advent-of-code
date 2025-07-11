@@ -1,16 +1,14 @@
 def is_game_possible(game):
-    game_list = game.replace(',', '').replace(';', '').split(' ')[:2:-1]
-
+    game_list = game.replace(',', '').replace(';', '').split(' ')[:1:-1]
     maximum_number_for_colour = {'red': 12, 'green': 13, 'blue': 14}
-    current_colour = ''
 
-    for i in range(len(game_list)):
-        if i % 2:
-            number = int(game_list[i])
-            if number > maximum_number_for_colour[current_colour]:
+    current_colour = ''
+    for item in game_list:
+        if item.isnumeric():
+            if int(item) > maximum_number_for_colour[current_colour]:
                 return False
         else:
-            current_colour = game_list[i]
+            current_colour = item
 
     return True
 
@@ -27,4 +25,4 @@ if __name__ == '__main__':
     possible_games = filter(is_game_possible, data)
     possible_game_ids_sum = sum(map(get_game_id, possible_games))
 
-    print(f'part 1: {possible_game_ids_sum}\npart 2: {""}')
+    print(f'part 1: {possible_game_ids_sum}')
