@@ -4,10 +4,10 @@ def is_game_possible(game):
 
     current_colour = ''
     for item in game_list:
-        if item.isnumeric():
+        try:
             if int(item) > maximum_number_for_colour[current_colour]:
                 return False
-        else:
+        except:
             current_colour = item
 
     return True
