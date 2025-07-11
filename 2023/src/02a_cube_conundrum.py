@@ -13,16 +13,13 @@ def is_game_possible(game):
     return True
 
 
-def get_game_id(game):
-    game_id = int(game.split(' ')[1][:-1])
-    return game_id
-
-
 if __name__ == '__main__':
     with open('data/02_input.txt', 'r') as f:
         data = [l.strip() for l in f]
 
     possible_games = filter(is_game_possible, data)
+
+    get_game_id = lambda game: int(game.split(' ')[1][:-1])
     possible_game_ids_sum = sum(map(get_game_id, possible_games))
 
     print(f'part 1: {possible_game_ids_sum}')
