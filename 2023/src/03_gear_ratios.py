@@ -6,29 +6,25 @@ def get_sum_of_correct_numbers(data):
     sum_of_correct_numbers = 0
     coord_range = range(len(data))
 
-    for line_number in coord_range:
-        line_position = 0
+    for i in coord_range:
+        j = 0
 
-        while line_position in coord_range:
-            index = 0
+        while j in coord_range:
             coords_of_number = []
 
-            while True:
-                if line_position+index in coord_range:
-                    char = data[line_number][line_position+index]
-                    if char.isnumeric():
-                        coord = (line_number, line_position+index)
-                        coords_of_number.append(coord)
-                        index += 1
-                    else:
-                        break
+            while j in coord_range:
+                coord = (i, j)
+                char = data[i][j]
+                j += 1
+                if char.isnumeric():
+                    coords_of_number.append(coord)
                 else:
                     break
             
             if coords_of_number:
-                breaker = False
+                break_flag = False
                 for y, x in coords_of_number:
-                    if breaker: 
+                    if break_flag: 
                         break
 
                     for new_y, new_x in product([-1, 0, 1], repeat=2):
@@ -36,10 +32,9 @@ def get_sum_of_correct_numbers(data):
                             if data[y+new_y][x+new_x] in symbols:
                                 number = int(''.join([data[y][x] for y, x in coords_of_number]))
                                 sum_of_correct_numbers += number
-                                breaker = True
+                                break_flag = True
                                 break
 
-            line_position += 1 + index
     
     return sum_of_correct_numbers
 
