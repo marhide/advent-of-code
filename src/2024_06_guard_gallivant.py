@@ -76,7 +76,7 @@ def get_table_permuations(table):
 
 
 if __name__ == '__main__':
-    with open('data/06_input.txt', 'r', encoding='utf-8') as file:
+    with open('data/2024_06_input.txt', 'r', encoding='utf-8') as file:
         table = [line.strip() for line in file]
 
     table_permuations = get_table_permuations(table)

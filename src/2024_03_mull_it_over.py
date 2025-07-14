@@ -1,4 +1,4 @@
-with open('data/03_input.txt', 'r', encoding='utf-8') as f:
+with open('data/2024_03_input.txt', 'r', encoding='utf-8') as f:
     data = f.read()
 
 

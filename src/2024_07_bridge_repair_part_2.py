@@ -29,7 +29,7 @@ def is_equation_possible(item):
 
 
 if __name__ == '__main__':
-    with open('data/07_input.txt', 'r', encoding='utf-8') as file:
+    with open('data/2024_07_input.txt', 'r', encoding='utf-8') as file:
         data = [line.strip().split(': ') for line in file]
         data = [(int(item[0]), tuple(map(int, item[1].split(' ')))) for item in data]
 

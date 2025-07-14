@@ -28,7 +28,7 @@ def get_antinode_count(data):
 
 
 if __name__ == '__main__':
-    with open('data/08_input.txt', 'r', encoding='utf-8') as f:
+    with open('data/2024_08_input.txt', 'r', encoding='utf-8') as f:
         data = [l.strip() for l in f]
 
     count = get_antinode_count(data)

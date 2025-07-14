@@ -51,7 +51,7 @@ def get_cross_mas_count(table):
 
 
 if __name__ == '__main__':
-    with open('data/04_input.txt', 'r', encoding='utf-8') as file:
+    with open('data/2024_04_input.txt', 'r', encoding='utf-8') as file:
         table = [line.strip() for line in file]
 
     print(f'part 1: {get_xmas_count(table)}\npart 2: {get_cross_mas_count(table)}')

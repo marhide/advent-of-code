@@ -21,7 +21,7 @@ def return_calibration_value(calibration_line):
 
 
 if __name__ == '__main__':
-    with open('data/01_input.txt', 'r') as f:
+    with open('data/2023_01_input.txt', 'r') as f:
         data = [l.strip() for l in f]
 
     part_1 = sum(map(return_calibration_value, data))

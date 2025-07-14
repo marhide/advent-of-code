@@ -1,4 +1,4 @@
-with open('data/02_input.txt', 'r', encoding='utf-8') as f:
+with open('data/2024_02_input.txt', 'r', encoding='utf-8') as f:
     data = [list(map(int, l.strip().split(' '))) for l in f]
 
 

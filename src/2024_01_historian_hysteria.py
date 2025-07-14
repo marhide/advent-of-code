@@ -1,6 +1,6 @@
 left_list, right_list = [], []
 
-with open('data/01_input.txt', 'r', encoding='utf-8') as f:
+with open('data/2024_01_input.txt', 'r', encoding='utf-8') as f:
     for l in f:
         nums = l.split('   ')
         num_1 = int(nums[0].strip())

@@ -18,7 +18,7 @@ def get_power_of_game(game):
 
 
 if __name__ == '__main__':
-    with open('data/02_input.txt', 'r') as f:
+    with open('data/2023_02_input.txt', 'r') as f:
         data = [l.strip() for l in f]
 
     total_power_of_games = sum(map(get_power_of_game, data))

@@ -1,4 +1,4 @@
-with open('data/05_input.txt', 'r', encoding='utf-8') as f:
+with open('data/2024_05_input.txt', 'r', encoding='utf-8') as f:
     order_list = [l.strip() for l in f if '|' in l]
     order_dict = {l.split('|')[0]: [] for l in order_list}
     order_pair_tuple_list = [(l.split('|')[0], l.split('|')[1]) for l in order_list]
@@ -7,7 +7,7 @@ with open('data/05_input.txt', 'r', encoding='utf-8') as f:
         if pair[0] in order_dict:
             order_dict[pair[0]].append(pair[1])
 
-with open('data/05_input.txt', 'r', encoding='utf-8') as f:
+with open('data/2024_05_input.txt', 'r', encoding='utf-8') as f:
     updates_list = [l.strip().split(',') for l in f if ',' in l]
 
 

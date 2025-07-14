@@ -40,7 +40,7 @@ def get_sum_of_correct_numbers(data):
 
 
 if __name__ == '__main__':
-    with open('data/03_input.txt', 'r') as f:
+    with open('data/2023_03_input.txt', 'r') as f:
         data = [l.strip() for l in f]
 
     part_1 = get_sum_of_correct_numbers(data)
