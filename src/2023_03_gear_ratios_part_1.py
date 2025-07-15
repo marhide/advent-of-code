@@ -27,15 +27,14 @@ def get_sum_of_correct_numbers(data):
                     if break_flag:
                         break
 
-                    for new_y, new_x in product((-1, 0, 1), repeat=2):
-                        if y+new_y in coord_range and x+new_x in coord_range:
-                            if data[y+new_y][x+new_x] in symbols:
+                    for new_y, new_x in product((y-1, y, y+1), (x-1, x, x+1)):
+                        if new_y in coord_range and new_x in coord_range:
+                            if data[new_y][new_x] in symbols:
                                 number = int(''.join([data[y][x] for y, x in coords_of_number]))
                                 sum_of_correct_numbers += number
                                 break_flag = True
                                 break
 
-    
     return sum_of_correct_numbers
 
 

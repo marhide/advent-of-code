@@ -9,9 +9,9 @@ def get_antinode_count(data):
     antinode_set = set()
 
     for k in coords_dict:
-        for node, compairson_node in permutations(coords_dict[k], 2):
+        for node, comparison_node in permutations(coords_dict[k], 2):
             x, y = node
-            comparison_x, comparison_y = compairson_node
+            comparison_x, comparison_y = comparison_node
             x_antinode = x-(comparison_x-x)
             y_antinode = y-(comparison_y-y)
 
