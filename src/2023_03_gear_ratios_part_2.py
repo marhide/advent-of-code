@@ -9,7 +9,7 @@ def get_sum_of_correct_numbers(data):
         if data[i][j] == '*':
             adjacent_number_coords = []
 
-            for new_coord in product((i-1, i, i+1), (j-1, j, j+1)):
+            for new_coord in product([i-1, i, i+1], [j-1, j, j+1]):
                 if new_coord in coord_range:
                     char = data[new_coord[0]][new_coord[1]]
                     if char.isnumeric():
@@ -23,7 +23,7 @@ def get_sum_of_correct_numbers(data):
             for item in adjacent_number_coords:
                 y, x = list(item.values())[0]
                 number = ''
-                for new_coord in product((x-1, x, x+1), [y]):
+                for new_coord in product([y], [x-1, x, x+1]):
                     if new_coord in coord_range:
                         char = data[new_coord[0]][new_coord[1]]
                         if char.isnumeric():

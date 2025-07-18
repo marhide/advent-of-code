@@ -27,7 +27,7 @@ def get_sum_of_correct_numbers(data):
                     if break_flag:
                         break
 
-                    for new_y, new_x in product((y-1, y, y+1), (x-1, x, x+1)):
+                    for new_y, new_x in product([y-1, y, y+1], [x-1, x+1]):
                         if new_y in coord_range and new_x in coord_range:
                             if data[new_y][new_x] in symbols:
                                 number = int(''.join([data[y][x] for y, x in coords_of_number]))
