@@ -29,15 +29,14 @@ def get_sum_of_correct_numbers(data):
                         if char.isnumeric():
                             number += char
                 if number:
-                    numbers.append(int(number))
-
+                    numbers.append((int(number), item))
 
             print(numbers)
 
 
 
-            if len(numbers) == 2:
-                sum_of_correct_numbers += prod(numbers)
+            # if len(numbers) == 2:
+            #     sum_of_correct_numbers += prod(numbers)
 
     return sum_of_correct_numbers
 
