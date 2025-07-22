@@ -15,7 +15,7 @@ def get_sum_of_correct_numbers(data):
                     if char.isnumeric():
                         adjacent_number_coords.append({char: new_coord})
 
-            print(adjacent_number_coords)
+            # print(adjacent_number_coords)
 
 
             numbers = []
@@ -29,14 +29,23 @@ def get_sum_of_correct_numbers(data):
                         if char.isnumeric():
                             number += char
                 if number:
-                    numbers.append((int(number), item))
+                    numbers.append((int(number), [v for v in item.values()][0]))
 
-            print(numbers)
+            # print(numbers)
+            number_dict = {}
+            for item in numbers:
+                if item[1][0] not in number_dict:
+                    number_dict[item[1][0]] = item[0]
+                elif number_dict[item[1][0]] < item[0]:
+                    number_dict[item[1][0]] = item[0]
+
+            print(number_dict)
 
 
 
-            # if len(numbers) == 2:
-            #     sum_of_correct_numbers += prod(numbers)
+
+            if len(number_dict) == 2:
+                sum_of_correct_numbers += prod(number_dict.keys())
 
     return sum_of_correct_numbers
 
